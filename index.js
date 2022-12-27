@@ -47,10 +47,18 @@ var contactList = [
 
 
 app.get('/', function(req, res){
-    return res.render('home', {
-        title: "Contact List",
-        contact_List: contactList
-    });
+    // find({name: "shrey"})
+    Contact.find({}, function(err, contacts){
+        if(err) {
+            console.log('Error in fetching the contacts');
+            return;
+        }
+
+        return res.render('home', {
+            title: "Contact List",
+            contact_List: contacts
+        });
+    })
 });
 
 app.get('/practice', function(req, res){
@@ -61,19 +69,33 @@ app.get('/practice', function(req, res){
 
 app.post('/', function(req, res){
     // console.log(req.body);
-    contactList.push(req.body)
-    return res.redirect('back');
+    contactList.push(req.body);
+
+    Contact.create({
+        name: req.body.name,
+        phone: req.body.phone
+    }, function(err, newContact){
+        if(err) {
+            console.log('Error in creating a contact!');
+            return;
+        };
+        
+        return res.redirect('back');
+    });
+
 });
 
 app.get('/delete-contact', function(req, res){
-    let phone = req.query.phone;
-    let contactIndex = contactList.findIndex(contact => contact.phone == phone);
-    if(contactIndex != -1){
-        contactList.splice(contactIndex, 1);
-    }
+    let id = req.query.id;
+    Contact.findByIdAndDelete(id, function(err){
+        if(err) {
+            console.log("Error in deleting contact");
+            return;
+        }
 
-    return res.redirect('back');
-})
+        return res.redirect('back');
+    });
+});
 
 
 
