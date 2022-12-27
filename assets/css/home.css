@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#heading{
+    margin-top: 30px;
+    text-align: center;
+    color: gray;
+}
+
+#contacts-list-container{
+    padding: 0;
+    text-align: center;
+        
+}
+ul{
+    max-width: 420px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.contact{
+    padding: 3px 10px;
+    border: 1px solid white;
+    background-color: #6f92f9;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    color: white;
+    display: flex;
+}
+
+.del-key{
+    display: inline-block;
+    /* border: 2px solid red; */
+    margin: auto 0;
+    margin-left: 15px;
+    
+}
+
+.del-key a{
+    color: white;
+}
+
+.details{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    font-weight: bold;
+}
+
+
+input[type=text],input[type=number] {
+    border: none;
+    border-bottom: 2px solid #aaa;
+    padding: 8px;
+    margin-top: 8px;
+    outline: none;
+    transition: .3s;
+}
+
+input[type=text]:focus,input[type=number]:focus{
+    border-color: #6f92f9;
+    box-shadow: 0 0 5px 0 #6f92f9;
+}
+
+button[type=submit]{
+    text-transform: uppercase;
+    padding: 8px;
+    cursor: pointer;
+}
+
